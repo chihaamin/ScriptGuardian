@@ -17,7 +17,7 @@ export default function Home () {
       pwd,
       callbackUrl: '/dashboard'
     })
-    if (!!session.user) () => route.push('/dashboard')
+   
   }
   if (status == 'authenticated') () => route.push('/dashboard')
   else return (

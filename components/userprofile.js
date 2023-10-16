@@ -1,26 +1,31 @@
 'use client'
-import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
+import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, User } from "@nextui-org/react";
 import { useSession, signOut } from 'next-auth/react';
-
+import { useRouter } from "next/navigation";
 const UserProfile = () => {
     const { data: session } = useSession();
+    const route = useRouter()
+    if (!session) () => route.push('/');
     return (
         <Dropdown placement="bottom-end">
             <DropdownTrigger>
-                <Avatar
+                <User
                     as="button"
+                    avatarProps={ {
+                        isBordered: true,
+                        src: `${session.user.img}`
+
+                    } }
                     className="transition-transform"
-                    color="secondary"
+                    description={ session.user.title }
                     name={ session.user.name }
-                    size="md"
-                    src={ session.user.img }
                 />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
+            <DropdownMenu aria-label="Profile Actions" variant="flat" disabledKeys={ [ "settings", "analytics", "system", "membership" ] }>
                 <DropdownItem key="profile" className="h-14 gap-2 cursor-default">
                     <p className="font-semibold ">Signed in as : { session.user.name }</p>
                 </DropdownItem>
-                <DropdownItem key="team_settings">Membership</DropdownItem>
+                <DropdownItem key="membership" >Membership</DropdownItem>
                 <DropdownItem key="settings">My Scripts</DropdownItem>
                 <DropdownItem key="analytics">Analytics</DropdownItem>
                 <DropdownItem key="system">System</DropdownItem>

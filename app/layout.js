@@ -1,5 +1,5 @@
 import './globals.css'
-import { Providers } from './provider'
+import Providers from './provider'
 import { getServerSession } from 'next-auth'
 
 export const metadata = {
@@ -12,7 +12,7 @@ export default async function RootLayout ({ children }) {
   return (
     <html lang="en">
       <body className='bg-foreground-100' >
-        <Providers className='flex justify-center items-center w-full h-screen ' session= {session}>
+        <Providers className='flex justify-center items-center w-full h-screen ' session={ session }>
           { children }
         </Providers>
       </body>

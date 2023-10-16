@@ -1,6 +1,6 @@
 
 
-export default function Dashboard ({ children }) {
+export default function dashboard () {
     return (
         <div className="">
             No Contents !

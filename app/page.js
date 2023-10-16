@@ -12,17 +12,11 @@ export default function Home () {
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
-    const response = await signIn('credentials', {
+    await signIn('credentials', {
       auth,
       pwd,
-      redirect: true
     })
-    if (response.ok) {
-      route.push('/dashboard')
-    }
   }
-
-
 
   if (!session) return (
     <div className="w-full h-screen flex justify-center items-center">
@@ -72,5 +66,5 @@ export default function Home () {
 
       </Card>
     </div>)
-  if (!!session) route.push('/dashboard')
+  if (session) return route.push('/dashboard')
 }

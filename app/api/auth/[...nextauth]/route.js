@@ -137,9 +137,9 @@ const handler = NextAuth({
             authorize: async (credentials) => {
                 const user = await customLogin(credentials);
                 if (user) {
-                    return user;
+                    return Promise.resolve(user);
                 } else {
-                    return null;
+                    return Promise.resolve(null);
                 }
             },
         }),

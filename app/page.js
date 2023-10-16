@@ -16,9 +16,8 @@ export default function Home () {
       auth,
       pwd,
     })
-    alert({ ...session })
   }
-  if (!!session) return () => route.push('/dashboard')
+  if (session) () => route.push('/dashboard')
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">

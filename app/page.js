@@ -16,7 +16,7 @@ export default function Home () {
       auth,
       pwd,
       redirect: false,
-      callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard`
+      callbackUrl: '/dashboard'
     })
   }
   if (status == 'unauthenticated') return (

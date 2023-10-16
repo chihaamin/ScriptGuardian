@@ -8,23 +8,24 @@ import { signIn, useSession } from "next-auth/react";
 export default function Home () {
   const [ pwd, setPwd ] = useState("");
   const [ auth, setAuth ] = useState("");
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
-    await signIn('Credentials', {
+    const response = await signIn('credentials', {
       auth,
       pwd,
       redirect: false
     })
-    if (!!session) {
+    alert(response)
+    if (response.ok) {
       route.push('/dashboard')
     }
   }
 
 
 
-  if (!session) return (
+  if (status == 'unauthenticated') return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">
         <CardHeader className="pt-2 px-4 flex-col items-center gap-2">
@@ -72,5 +73,5 @@ export default function Home () {
 
       </Card>
     </div>)
-  if (!!session) route.push('/dashboard')
+  if (!!session) () => route.push('/dashboard')
 }

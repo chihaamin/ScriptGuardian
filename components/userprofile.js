@@ -22,7 +22,7 @@ const UserProfile = () => {
                 />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat" disabledKeys={ [ "settings", "analytics", "system", "membership" ] }>
-                <DropdownItem key="profile" className="h-14 gap-2 cursor-default">
+                <DropdownItem isReadOnly key="profile" className="h-14 gap-2 cursor-default">
                     <p className="font-semibold ">Signed in as : { session.user.name }</p>
                 </DropdownItem>
                 <DropdownItem key="membership" >Membership</DropdownItem>

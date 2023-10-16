@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 const UserProfile = () => {
     const { data: session } = useSession();
     const route = useRouter()
-    if (!session) () => route.push('/');
     return (
         <Dropdown placement="bottom-end">
             <DropdownTrigger>

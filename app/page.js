@@ -15,7 +15,7 @@ export default function Home () {
     const response = await signIn('credentials', {
       auth,
       pwd,
-      redirect: false
+      redirect: true
     })
     if (response.ok) {
       route.push('/dashboard')

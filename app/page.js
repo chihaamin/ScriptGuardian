@@ -21,7 +21,7 @@ export default function Home () {
   }
 
 
-
+  if (!!session.user) () => route.push('/dashboard')
   if (status == 'unauthenticated') return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">

@@ -22,7 +22,6 @@ const ExtractUser = (html, userID) => {
     return { userID, name, title, img, posts, joined, daysWon, rank, reputation, communityAnswers };
 
 }
-
 async function getCsrfAndSession () {
     const getUrl = 'https://gameguardian.net/forum/index.php?app=core&module=system&controller=ajax&do=getCsrfKey&path=/forum/login/';
 
@@ -40,7 +39,6 @@ async function getCsrfAndSession () {
         sessionToken: response.headers.get('Set-Cookie').match(/ips4_IPSSessionFront=([^;]+);/)[ 1 ],
     };
 }
-
 async function postLogin (csrfKey, sessionToken, auth, pwd) {
     const postUrl = 'https://gameguardian.net/forum/login/';
 
@@ -75,7 +73,6 @@ async function postLogin (csrfKey, sessionToken, auth, pwd) {
         throw new Error('Unexpected status code:', response.status);
     }
 }
-//?app=core&module=members&controller=profile&id={{userid}}
 async function get_User (ips4Cookies) {
     const getUrl = `https://gameguardian.net/forum/index.php?app=core&module=members&controller=profile&id=${ips4Cookies.ips4_member_id}`;
     const response = await fetch(getUrl, {
@@ -90,9 +87,6 @@ async function get_User (ips4Cookies) {
     const html = await response.text();
     return ExtractUser(html, ips4Cookies.ips4_member_id);
 }
-
-
-
 async function customLogin (credentials) {
     // Call your existing login logic here
     const { auth, pwd } = credentials;
@@ -117,7 +111,6 @@ async function customLogin (credentials) {
         return null;
     }
 }
-
 const handler = NextAuth({
     session: {
         strategy: 'jwt'
@@ -137,9 +130,9 @@ const handler = NextAuth({
             authorize: async (credentials) => {
                 const user = await customLogin(credentials);
                 if (user) {
-                    return Promise.resolve(user);
+                    return user;
                 } else {
-                    return Promise.resolve(null);
+                    return null;
                 }
             },
         }),

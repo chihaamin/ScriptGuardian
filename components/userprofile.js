@@ -3,9 +3,9 @@ import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar, User } f
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 const UserProfile = () => {
-    const { data: session } = useSession();
+    const { data: session,status } = useSession();
     const route = useRouter()
-    if (!session) () => route.push('/');
+    if (status == 'authenticated') () => route.push('/');
     return (
         <Dropdown placement="bottom-end">
             <DropdownTrigger>
@@ -14,14 +14,8 @@ const UserProfile = () => {
                     className="transition-transform"
                     description={ session.user.title }
                     name={ session.user.name }
-                > <Avatar
-                        as="button"
-                        className="transition-transform"
-                        color="secondary"
-                        size="md"
-                        src={ session.user.img }
-                    /></User>
-
+                    avatarProps={ { src: session.user.img } }
+                />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat" disabledKeys={ [ "settings", "analytics", "system", "membership" ] }>
                 <DropdownItem key="membership" >Membership</DropdownItem>

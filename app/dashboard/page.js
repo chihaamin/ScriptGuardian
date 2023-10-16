@@ -2,7 +2,7 @@
 
 export default function dashboard () {
     return (
-        <div className="">
+        <div className="w-full h-full">
             No Contents !
         </div>
     )

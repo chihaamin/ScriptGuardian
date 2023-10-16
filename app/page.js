@@ -16,9 +16,10 @@ export default function Home () {
       auth,
       pwd,
     })
+    alert({ ...session })
   }
-
-  if (!session) return (
+  if (!!session) return () => route.push('/dashboard')
+  return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">
         <CardHeader className="pt-2 px-4 flex-col items-center gap-2">
@@ -65,6 +66,8 @@ export default function Home () {
         </CardBody>
 
       </Card>
-    </div>)
-  if (session) return route.push('/dashboard')
+    </div>
+
+  );
+
 }

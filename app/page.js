@@ -12,13 +12,14 @@ export default function Home () {
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
-    await signIn('credentials', {
+    await signIn('Credentials', {
       auth,
       pwd,
-      callbackUrl:`${process.env.NEXTAUTH_URL}/dashboard`
+      redirect: false,
+      callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard`
     })
   }
-if (status=='unauthenticated') return (
+  if (status == 'unauthenticated') return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">
         <CardHeader className="pt-2 px-4 flex-col items-center gap-2">

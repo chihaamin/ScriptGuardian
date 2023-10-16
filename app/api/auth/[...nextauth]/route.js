@@ -125,7 +125,6 @@ const handler = NextAuth({
     pages: {
         signIn: '/',
         signOut: '/',
-
     },
     providers: [
         CredentialsProvider({
@@ -176,6 +175,10 @@ const handler = NextAuth({
                     communityAnswers: token.communityAnswers
                 }
             }
+        },
+
+        authorized ({ req, token }) {
+            if (token) return true
         },
 
     },

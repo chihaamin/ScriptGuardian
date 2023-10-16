@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import { Card, CardHeader, CardBody, Input, Button, Link, Spinner } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, Input, Button, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 
@@ -8,17 +8,18 @@ import { signIn, useSession } from "next-auth/react";
 export default function Home () {
   const [ pwd, setPwd ] = useState("");
   const [ auth, setAuth ] = useState("");
-  const { status } = useSession();
+  const { data: session } = useSession();
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
     await signIn('credentials', {
       auth,
       pwd,
-      redirect: false,
     })
+    
   }
-  if (status == 'unauthenticated') return (
+  if (!!session) return () => route.push('/dashboard')
+  return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">
         <CardHeader className="pt-2 px-4 flex-col items-center gap-2">
@@ -34,6 +35,7 @@ export default function Home () {
             placeholder="Display Name or Email "
             value={ auth }
             onValueChange={ setAuth }
+
           />
           <Input
             fullWidth
@@ -43,11 +45,13 @@ export default function Home () {
             placeholder="Password "
             value={ pwd }
             onValueChange={ setPwd }
+
           />
           <Button type="submit" color="secondary" variant="ghost" onClick={ () => fetchUser(auth, pwd) }>
-            { status == 'loading' ? <Spinner /> : 'Login' }
+            Login
           </Button>
         </CardBody>
+
         <CardBody className="flex justify-center align-center" >
           <div className="flex-col justify-center align-center gap-2">
             <div className="flex justify-center align-center">
@@ -57,11 +61,13 @@ export default function Home () {
             <div className="flex justify-center align-center">
               <p className="text-tiny uppercase font-bold">Made by <Link size="sm" underline="hover" isExternal href='https://gameguardian.net/forum/profile/1258371-xekex/' className="text-default-500 text-tiny">XEKEX</Link></p>
             </div>
+
           </div>
         </CardBody>
+
       </Card>
     </div>
 
   );
-  if (status == 'authenticated') return route.push('/dashboard')
+
 }

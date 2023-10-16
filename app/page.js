@@ -12,15 +12,12 @@ export default function Home () {
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
-    const response = await signIn('Credentials', {
+    await signIn('Credentials', {
       auth,
       pwd,
-      redirect: false
+      redirect: true,
+      callbackUrl: '/dashboard'
     })
-    alert(response)
-    if (response.ok) {
-      route.push('/dashboard')
-    }
   }
 
 

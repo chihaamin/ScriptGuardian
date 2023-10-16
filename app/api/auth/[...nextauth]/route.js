@@ -128,7 +128,7 @@ const handler = NextAuth({
     },
     providers: [
         CredentialsProvider({
-            name: 'Credentials',
+            name: 'credentials',
             credentials: {
                 auth: {},
                 pwd: {},
@@ -136,9 +136,9 @@ const handler = NextAuth({
             authorize: async (credentials) => {
                 const user = await customLogin(credentials);
                 if (user) {
-                    return Promise.resolve(user);
+                    return user;
                 } else {
-                    return Promise.resolve(null);
+                    return null;
                 }
             },
         }),

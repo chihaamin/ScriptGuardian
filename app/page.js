@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import { Card, CardHeader, CardBody, Input, Button, Link } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, Input, Button, Link, Spinner } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 
@@ -19,10 +19,8 @@ export default function Home () {
     })
     if (!!session.user) () => route.push('/dashboard')
   }
-
-
-  if (!!session.user) () => route.push('/dashboard')
-  if (status == 'unauthenticated') return (
+  if (status == 'authenticated') () => route.push('/dashboard')
+  else return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">
         <CardHeader className="pt-2 px-4 flex-col items-center gap-2">
@@ -51,7 +49,7 @@ export default function Home () {
 
           />
           <Button type="submit" color="secondary" variant="ghost" onClick={ () => fetchUser(auth, pwd) }>
-            Login
+            { status == 'loading' ? <Spinner /> : 'Login' }
           </Button>
         </CardBody>
 

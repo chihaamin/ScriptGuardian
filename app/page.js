@@ -16,10 +16,10 @@ export default function Home () {
       auth,
       pwd,
       callbackUrl: '/dashboard'
-    })
-   
+    });
+    if (!!session.user) () => route.push('/dashboard')
   }
-  if (status == 'authenticated') () => route.push('/dashboard')
+  if (status == 'authenticated') return () => route.push('/dashboard');
   else return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">

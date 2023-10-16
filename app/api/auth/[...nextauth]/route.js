@@ -128,7 +128,7 @@ const handler = NextAuth({
     },
     providers: [
         CredentialsProvider({
-            name: 'Credentials',
+            name: 'credentials',
             credentials: {
                 auth: {},
                 pwd: {},
@@ -176,11 +176,6 @@ const handler = NextAuth({
                 }
             }
         },
-
-        authorized ({ req, token }) {
-            if (token) return true
-        },
-
     },
     secret: process.env.NEXTAUTH_SECRET,
 

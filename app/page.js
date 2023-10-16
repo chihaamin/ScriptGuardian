@@ -12,7 +12,7 @@ export default function Home () {
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
-    const response = await signIn('credentials', {
+    const response = await signIn('Credentials', {
       auth,
       pwd,
       redirect: false

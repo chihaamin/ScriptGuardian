@@ -15,9 +15,9 @@ export default function Home () {
     await signIn('credentials', {
       auth,
       pwd,
-      redirect: true,
       callbackUrl: '/dashboard'
     })
+    if (!!session.user) () => route.push('/dashboard')
   }
 
 

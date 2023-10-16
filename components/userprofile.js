@@ -4,16 +4,14 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 const UserProfile = () => {
     const { data: session } = useSession();
-    const route = useRouter()
     return (
         <Dropdown placement="bottom-end">
             <DropdownTrigger>
                 <User
                     as="button"
                     avatarProps={ {
-                        isBordered: true,
-                        src: `${session.user.img}`
-
+                        isBordered: false,
+                        src: session.user.img,
                     } }
                     className="transition-transform"
                     description={ session.user.title }

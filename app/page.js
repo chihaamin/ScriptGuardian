@@ -15,11 +15,10 @@ export default function Home () {
     await signIn('credentials', {
       auth,
       pwd,
+      callbackUrl:`${process.env.NEXTAUTH_URL}/dashboard`
     })
-    if (status == 'authenticated') return route.push('/dashboard')
   }
-
-  return (
+if (status=='unauthenticated') return (
     <div className="w-full h-screen flex justify-center items-center">
       <Card className="py-4 w-[25vw]">
         <CardHeader className="pt-2 px-4 flex-col items-center gap-2">
@@ -64,5 +63,5 @@ export default function Home () {
     </div>
 
   );
-
+  if (status == 'authenticated') return route.push('/dashboard')
 }

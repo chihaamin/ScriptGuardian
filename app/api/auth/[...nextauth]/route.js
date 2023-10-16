@@ -129,7 +129,7 @@ const handler = NextAuth({
     },
     providers: [
         CredentialsProvider({
-            name: 'credentials',
+            name: 'Credentials',
             credentials: {
                 auth: {},
                 pwd: {},

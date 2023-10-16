@@ -12,7 +12,7 @@ export default function Home () {
   const route = useRouter()
 
   const fetchUser = async (auth, pwd) => {
-    await signIn('Credentials', {
+    await signIn('credentials', {
       auth,
       pwd,
       redirect: true,
@@ -70,5 +70,4 @@ export default function Home () {
 
       </Card>
     </div>)
-  if (!!session) () => route.push('/dashboard')
 }

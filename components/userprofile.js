@@ -1,16 +1,20 @@
 'use client'
 import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
 import { useSession, signOut } from 'next-auth/react';
+import { useEffect } from "react";
+
+export const dynamic = 'force-dynamic'
+
 const UserProfile = () => {
-    const { update, data: session, status } = useSession();
-    update() 
+    const { data: session, status } = useSession();
+
     if (status == 'authenticated')
         return (
             <Dropdown placement="bottom-end">
                 <DropdownTrigger className="flex">
                     <div className='flex justify-center items-center gap-1 w-auto cursor-pointer'>
                         <button class="relative justify-center items-center box-border overflow-hidden align-middle outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 w-10 h-10 text-tiny bg-default text-default-foreground rounded-full z-10 aria-expanded:scale-[0.5] aria-expanded:opacity-70 subpixel-antialiased transition-transform flex" type="button">
-                            <img src={ session.user.img } class="flex object-cover w-full h-full transition-opacity !duration-500 opacity-0 data-[loaded=true]:opacity-100" alt={ session.user.name } />
+                            <image src={ session.user.image } class="flex object-cover w-full h-full transition-opacity !duration-500 opacity-0 data-[loaded=true]:opacity-100" alt={ session.user.name } />
                         </button>
                         <div class="inline-flex flex-col items-start"><span class="text-small text-inherit text-violet-900">{ session.user.name }</span><span class="text-tiny text-foreground-400">{ session.user.title }</span></div>
                     </div>

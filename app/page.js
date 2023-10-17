@@ -13,7 +13,7 @@ export default function Home () {
   const [ loading, setLoading ] = useState(false);
   const fetchUser = async (auth, pwd) => {
     setLoading(true);
-    await signIn('Credentials', {
+    await signIn('credentials', {
       auth,
       pwd,
       callbackUrl: '/dashboard'

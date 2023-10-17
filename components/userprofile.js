@@ -3,8 +3,7 @@ import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@
 import { useSession, signOut } from 'next-auth/react';
 const UserProfile = () => {
     const { update, data: session, status } = useSession();
-    update()
-    console.log(session)
+    update() 
     if (status == 'authenticated')
         return (
             <Dropdown placement="bottom-end">

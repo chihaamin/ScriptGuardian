@@ -152,6 +152,7 @@ const handler = NextAuth({
                 token.reputation = user.reputation
                 token.communityAnswers = user.communityAnswers
             }
+            
             return token
         },
         async session ({ session, token }) {

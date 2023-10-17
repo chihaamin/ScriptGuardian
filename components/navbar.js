@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 export default function Nav () {
     const path = usePathname()
     return (
+        
         <Navbar className='justify-around absolute' maxWidth='full'>
             <NavbarBrand as='div' className='text-2xl items-center w-auto'>
                 Script

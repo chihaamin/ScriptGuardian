@@ -13,7 +13,7 @@ export default function Home () {
   const [ loading, setLoading ] = useState(false);
   const fetchUser = async (auth, pwd) => {
     setLoading(true);
-    signIn('Credentials', {
+    await signIn('Credentials', {
       auth,
       pwd,
       callbackUrl: '/dashboard'
@@ -53,7 +53,7 @@ export default function Home () {
             value={ pwd }
             onValueChange={ setPwd }
           />
-          <Button type="submit" color="secondary" variant="ghost" onClick={ () => fetchUser(auth, pwd) }>
+          <Button type="submit" color="secondary" variant="shadow" onClick={ () => fetchUser(auth, pwd) }>
             { loading ? <Spinner size="sm" color="secondary" /> : 'Login' }
           </Button>
         </CardBody>

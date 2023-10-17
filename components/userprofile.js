@@ -14,14 +14,10 @@ const UserProfile = () => {
                     className="transition-transform"
                     name={ session.user.name }
                     src={ session.user.img }
-                    size="lg"
+                    size="md"
                 />
             </DropdownTrigger>
-            <div>
-                <p> { session.user.name }</p>
-                <p>{ session.user.title }</p>
-            </div>
-            <DropdownMenu aria-label="Profile Actions" variant="flat" disabledKeys={ [ "settings", "analytics", "system", "membership" ] }>
+            <DropdownMenu aria-label="Profile Actions" color='secondary' variant="shadow" disabledKeys={ [ "settings", "analytics", "system", "membership" ] }>
                 <DropdownItem key="membership" >Membership</DropdownItem>
                 <DropdownItem key="settings">My Scripts</DropdownItem>
                 <DropdownItem key="analytics">Analytics</DropdownItem>

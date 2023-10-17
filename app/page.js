@@ -10,7 +10,7 @@ export default function Home () {
   const [ auth, setAuth ] = useState("");
   const { data: session, status } = useSession();
   const route = useRouter()
-  const [ loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useState(null);
   const fetchUser = async (auth, pwd) => {
     setLoading(true);
     await signIn('credentials', {
@@ -18,7 +18,7 @@ export default function Home () {
       pwd,
       callbackUrl: '/dashboard'
     });
-    setLoading(false);
+    setLoading(null);
   }
   useEffect(() => {
     // Redirect to /dashboard if there is a user in the session

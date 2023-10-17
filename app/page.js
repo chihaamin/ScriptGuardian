@@ -54,7 +54,7 @@ export default function Home () {
             onValueChange={ setPwd }
           />
           <Button type="submit" color="secondary" variant="ghost" onClick={ () => fetchUser(auth, pwd) }>
-            { loading ? <Spinner /> : 'Login' }
+            { loading ? <Spinner size="sm" color="secondary" /> : 'Login' }
           </Button>
         </CardBody>
         <CardBody className="flex justify-center align-center" >

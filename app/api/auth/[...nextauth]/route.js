@@ -8,9 +8,9 @@ const ExtractUser = (html, userID) => {
 
     const name = $('.ipsType_reset.ipsPageHead_barText').first().text().trim();
     const title = $('.ipsPageHead_barText span[style^="color"]').first().text().trim();
-    var picture = $('.ipsUserPhoto.ipsUserPhoto_xlarge').first().find('picture').attr('src') || '';
-    if (picture && !picture.startsWith('data:picture')) {
-        picture = picture.startsWith('//') ? `https:${picture}` : picture;
+    var image = $('.ipsUserPhoto.ipsUserPhoto_xlarge').first().find('image').attr('src') || '';
+    if (image && !image.startsWith('data:image')) {
+        image = image.startsWith('//') ? `https:${image}` : image;
     }
     const posts = parseInt($('h4:contains("Posts")').parent().contents().not('.ipsType_minorHeading').text().trim(), 10)
     const joined = $('h4:contains("Joined")').next().text().trim();
@@ -19,7 +19,7 @@ const ExtractUser = (html, userID) => {
     const reputation = parseInt($('a[href*="/reputation/"] h3:contains("Reputation")').siblings('p.cProfileRepScore').text().trim(), 10) || 0;
     const communityAnswers = parseInt($('a[href*="/solutions/"] h3:contains("Community Answers")').siblings('p.cProfileSolutions').text().trim(), 10) || 0;
 
-    return { userID, name, title, picture, posts, joined, daysWon, rank, reputation, communityAnswers };
+    return { userID, name, title, image, posts, joined, daysWon, rank, reputation, communityAnswers };
 
 }
 async function getCsrfAndSession () {
@@ -99,7 +99,7 @@ async function customLogin (credentials) {
             id: user.userID,
             name: user.name,
             title: user.title,
-            picture: user.picture,
+            image: user.image,
             posts: user.posts,
             joined: user.joined,
             daysWon: user.daysWon,
@@ -139,16 +139,19 @@ const handler = NextAuth({
     ],
     callbacks: {
         async jwt ({ token, user }) {
-            token.id = user.userID
-            token.name = user.name
-            token.title = user.title
-            token.picture = user.picture
-            token.posts = user.posts
-            token.joined = user.joined
-            token.daysWon = user.daysWon
-            token.rank = user.rank
-            token.reputation = user.reputation
-            token.communityAnswers = user.communityAnswers
+            const isSignIn = !!user ? true : false
+            if (isSignIn) {
+                token.id = user.userID
+                token.name = user.name
+                token.title = user.title
+                token.image = user.image
+                token.posts = user.posts
+                token.joined = user.joined
+                token.daysWon = user.daysWon
+                token.rank = user.rank
+                token.reputation = user.reputation
+                token.communityAnswers = user.communityAnswers
+            }
             return token
         },
         async session ({ session, token }) {
@@ -157,7 +160,7 @@ const handler = NextAuth({
                     id: token.userID,
                     name: token.name,
                     title: token.title,
-                    picture: token.picture,
+                    image: token.image,
                     posts: token.posts,
                     joined: token.joined,
                     daysWon: token.daysWon,

@@ -1,23 +1,26 @@
 'use client'
 import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
 import { useSession, signOut } from 'next-auth/react';
+import { useEffect } from "react";
 
 export const dynamic = 'force-dynamic'
 
 const UserProfile = () => {
     const { data: session, status } = useSession();
-
+    useEffect(() => {
+        return
+    }, [ session ])
 
     if (status == 'authenticated')
         return (
             <Dropdown placement="bottom-end">
                 <DropdownTrigger className="flex">
                     <div className='flex justify-center items-center gap-1 w-auto cursor-pointer'>
-                       <Avatar 
-                       name={session.user.name}
-                       src={session.user.image}
+                        <Avatar
+                            name={ session.user.name }
+                            src={ session.user.image }
                             size="md"
-                            radius="sm"
+                            radius="full"
                         />
                         <div class="inline-flex flex-col items-start"><span class="text-small text-inherit text-violet-900">{ session.user.name }</span><span class="text-tiny text-foreground-400">{ session.user.title }</span></div>
                     </div>

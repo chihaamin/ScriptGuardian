@@ -15,6 +15,7 @@ const UserProfile = () => {
                     name={ session.user.name }
                     src={ session.user.img }
                     size="md"
+                    
                 />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" color='secondary' variant="shadow" disabledKeys={ [ "settings", "analytics", "system", "membership" ] }>

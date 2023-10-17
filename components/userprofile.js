@@ -1,9 +1,9 @@
 'use client'
 import { DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
 import { useSession, signOut } from 'next-auth/react';
-import { useRouter } from "next/navigation";
 const UserProfile = () => {
-    const { data: session, status } = useSession();
+    const { update, data: session, status } = useSession();
+    update()
     console.log(session)
     if (status == 'authenticated')
         return (

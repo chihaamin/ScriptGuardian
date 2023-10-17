@@ -5,9 +5,8 @@ import UserProfile from "./userprofile";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Nav ({ sess }) {
+export default function Nav () {
     const path = usePathname()
-    console.log('sess : ', sess)
     return (
         <Navbar className='justify-around absolute' maxWidth='full'>
             <NavbarBrand as='div' className='text-2xl items-center w-auto'>

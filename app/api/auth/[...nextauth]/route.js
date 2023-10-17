@@ -138,9 +138,8 @@ const handler = NextAuth({
         }),
     ],
     callbacks: {
-        async jwt ({ token, user }) {
-            const isSignIn = user ? true : false
-            if (isSignIn) {
+        async jwt ({ token, user, trigger }) {
+            if (trigger == 'signIn' || trigger == 'update') {
                 token.id = user.userID
                 token.name = user.name
                 token.title = user.title

@@ -139,19 +139,16 @@ const handler = NextAuth({
     ],
     callbacks: {
         async jwt ({ token, user }) {
-            const isSignIn = !!user ? true : false
-            if (isSignIn) {
-                token.id = user.userID
-                token.name = user.name
-                token.title = user.title
-                token.img = user.img
-                token.posts = user.posts
-                token.joined = user.joined
-                token.daysWon = user.daysWon
-                token.rank = user.rank
-                token.reputation = user.reputation
-                token.communityAnswers = user.communityAnswers
-            }
+            token.id = user.userID
+            token.name = user.name
+            token.title = user.title
+            token.img = user.img
+            token.posts = user.posts
+            token.joined = user.joined
+            token.daysWon = user.daysWon
+            token.rank = user.rank
+            token.reputation = user.reputation
+            token.communityAnswers = user.communityAnswers
             return token
         },
         async session ({ session, token }) {
